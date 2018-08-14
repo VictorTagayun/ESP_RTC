@@ -94,20 +94,32 @@ void clockDisplay()
 
 BLYNK_CONNECTED() {
   // Synchronize time on connection
+  //delay(10000);
+
+  rtc.begin();
+  
+  hour();
+  minute();
+  second();
+  day();
+  month();
+  year();
+  
+  delay(10000);
   rtc.begin();
 
-  String currentTime = String(hour()) + ":" + minute() + ":" + second();
-  String currentDate = String(day()) + " " + month() + " " + year();
-  Serial.print("Current time: ");
-  Serial.print(currentTime);
-  Serial.print(" ");
-  Serial.print(currentDate);
-  Serial.println();
+  //  String currentTime = String(hour()) + ":" + minute() + ":" + second();
+  //  String currentDate = String(day()) + " " + month() + " " + year();
+  //  Serial.print("Current time: ");
+  //  Serial.print(currentTime);
+  //  Serial.print(" ");
+  //  Serial.print(currentDate);
+  //  Serial.println();
 
-  // Send time to the App
-  Blynk.virtualWrite(V1, currentTime);
-  // Send date to the App
-  Blynk.virtualWrite(V2, currentDate);
+  //  // Send time to the App
+  //  Blynk.virtualWrite(V1, currentTime);
+  //  // Send date to the App
+  //  Blynk.virtualWrite(V2, currentDate);
 
   Serial.print("Hour : ");
   Serial.print(hour());
@@ -125,6 +137,13 @@ BLYNK_CONNECTED() {
   Serial.print(year());
   Serial.println();
 
+  String currentTime = String(hour()) + ":" + minute() + ":" + second();
+  String currentDate = String(day()) + " " + month() + " " + year();
+  Serial.print("Current time: ");
+  Serial.print(currentTime);
+  Serial.print(" ");
+  Serial.print(currentDate);
+  Serial.println();
 }
 
 void setup()
